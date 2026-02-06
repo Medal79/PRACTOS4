@@ -1,0 +1,66 @@
+import 'dart:io';
+import 'dart:math';
+
+void main(List<String> arguments) {
+  print("Введите первое число");
+  var num = double.parse(stdin.readLineSync()!);
+  print("Введите второе число");
+  var num1=double.parse(stdin.readLineSync()!);
+  String op=stdin.readLineSync()!;
+
+
+  switch(op){
+    case "+":
+    print(num+num1);
+    break;
+    case "-":
+    print(num-num1);
+    break;
+    case "*":
+    print(num*num1);
+    break;
+    case "/":
+    if(num1!=0){
+      print(num/num1);
+    }else{
+      print("Деление на ноль невозможно");
+    }
+    print(num/num1);
+    break;
+    case "~/":
+    print(num~/num1);
+    break;
+    case "%":
+    if(num1!=0){
+    print(num%num1);
+    break;
+    }else{print("Делить на 0 нельзя");}
+    case"pow":
+    print((pow(num,num1)));
+
+
+
+
+    case"==":
+    print(num==num1);
+    case"!=":
+    print(num!=num1);
+    case ">":
+    print(num>num1);
+    case "<":
+    print(num<num1);
+    case ">=":
+    print(num>=num1);
+    case "<=":
+    print(num<=num1);
+
+
+
+   case "&&":
+   print(num<num1 && num !=0);
+   case "||":
+   print(num>=num1 || num1 == 0);
+   case "!":
+   print(!(num>num1));
+  }
+}

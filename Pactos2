@@ -1,0 +1,166 @@
+void main() {
+  Map<String, Map<String, int>> journal = {
+    'Молоков': {
+      'ОСиС': 5,
+      'РПМ': 4,
+      'ОАиП': 5,
+      'Физра': 3,
+      'Высшая математика': 5,
+    },
+    'Болотский': {
+      'ОСиС': 3,
+      'РПМ': 2,
+      'ОАиП': 4,
+      'Физра': 3,
+      'Высшая математика': 4,
+    },
+    'Лозовой': {
+      'ОСиС': 5,
+      'РПМ': 5,
+      'ОАиП': 5,
+      'Физра': 5,
+      'Высшая математика': 5,
+    },
+    'Мирзаев': {
+      'ОСиС': 2,
+      'РПМ': 4,
+      'ОАиП': 3,
+      'Физра': 2,
+      'Высшая математика': 3,
+    },
+    'Синегрибов': {
+      'ОСиС': 2,
+      'РПМ': 3,
+      'ОАиП': 2,
+      'Физра': 4,
+      'Высшая математика': 3,
+    },
+    'Хрусталев': {
+      'ОСиС': 5,
+      'РПМ': 4,
+      'ОАиП': 4,
+      'Физра': 4,
+      'Высшая математика': 5,
+    },
+  };
+
+  List<String> excellent = [];
+  List<String> good = [];
+  List<String> others = [];
+
+  for (var entry in journal.entries) {
+    String student = entry.key;
+    List<int> grades = entry.value.values.toList();
+    double avg = grades.reduce((a, b) => a + b) / grades.length;
+
+    if (avg >= 4.5) {
+      excellent.add(student);
+    } else if (avg >= 3.5) {
+      good.add(student);
+    } else {
+      others.add(student);
+    }
+  }
+
+  print('1. Категории студентов');
+  print('Отличники (средний >= 4.5): $excellent');
+  print('Хорошисты (3.5–4.5): $good');
+  print('Остальные (< 3.5): $others');
+
+  Map<int, int> gradeCount = {2: 0, 3: 0, 4: 0, 5: 0};
+
+  for (var grades in journal.values) {
+    for (var grade in grades.values) {
+      gradeCount[grade] = (gradeCount[grade] ?? 0) + 1;
+    }
+  }
+
+  print('\n2. Количество каждой оценки в журнале');
+  for (var entry in gradeCount.entries) {
+    print('Оценка ${entry.key}: ${entry.value} раз(а)');
+  }
+
+  Set<String> subjects = journal.values.first.keys.toSet();
+  Map<String, List<String>> fivesBySubject = {};
+
+  for (var subject in subjects) {
+    fivesBySubject[subject] = [];
+    for (var entry in journal.entries) {
+      if (entry.value[subject] == 5) {
+        fivesBySubject[subject]!.add(entry.key);
+      }
+    }
+  }
+
+  print('\n3. Студенты с пятёркой по каждому предмету');
+  for (var entry in fivesBySubject.entries) {
+    print('${entry.key}: ${entry.value}');
+  }
+
+  List<String> noTwosSubjects = [];
+
+  for (var subject in subjects) {
+    bool hasTwos = journal.values.any((grades) => grades[subject] == 2);
+    if (!hasTwos) {
+      noTwosSubjects.add(subject);
+    }
+  }
+
+  print('\n4. Предметы без двоек');
+  print(noTwosSubjects);
+
+  Map<String, int> twosBySubject = {};
+
+  for (var subject in subjects) {
+    int count = journal.values.where((grades) => grades[subject] == 2).length;
+    twosBySubject[subject] = count;
+  }
+
+  String worstSubject = twosBySubject.entries
+      .reduce((a, b) => a.value >= b.value ? a : b)
+      .key;
+
+  print('\n5. Предмет с наибольшим количеством двоек');
+  print('$worstSubject — ${twosBySubject[worstSubject]} двойки(-ек)');
+
+  Map<String, int> fivesByStudent = {};
+
+  for (var entry in journal.entries) {
+    int count = entry.value.values.where((g) => g == 5).length;
+    fivesByStudent[entry.key] = count;
+  }
+
+  int maxFives = fivesByStudent.values.reduce((a, b) => a > b ? a : b);
+  List<String> topStudents = fivesByStudent.entries
+      .where((e) => e.value == maxFives)
+      .map((e) => e.key)
+      .toList();
+
+  print('\n6. Студенты с наибольшим количеством пятёрок');
+  for (var name in topStudents) {
+    print('$name — $maxFives пятёрок');
+  }
+
+  print('\n7. Предметы с оценкой ниже 4');
+
+  for (var entry in journal.entries) {
+    List<String> weak = entry.value.entries
+        .where((e) => e.value < 4)
+        .map((e) => e.key)
+        .toList();
+
+    if (weak.isNotEmpty) {
+      print('${entry.key}: ${weak.length} предмет(а) — $weak');
+    }
+  }
+
+  print('\n8. Пары «студент — предмет» с пятёркой');
+
+  for (var entry in journal.entries) {
+    for (var gradeEntry in entry.value.entries) {
+      if (gradeEntry.value == 5) {
+        print('${entry.key} — ${gradeEntry.key}');
+      }
+    }
+  }
+}

@@ -1,0 +1,61 @@
+String formatName(String firstName, String lastName, [String? middleName]) {
+  if (middleName == null) {
+    return "$lastName $firstName";
+  }
+  return "$lastName $firstName $middleName";
+}
+
+double? calculate(double a, double b, String op) {
+  if (op == "+") return a + b;
+  if (op == "-") return a - b;
+  if (op == "*") return a * b;
+  if (op == "/") {
+    if (b == 0) return null;
+    return a / b;
+  }
+  return null;
+}
+
+void countSigns(List<int> numbers) {
+  int p = 0, o = 0, nul = 0;
+  numbers.forEach((n) {
+    if (n > 0) p++;
+    else if (n < 0) o++;
+    else nul++;
+  });
+  print("Положительных: $p");
+  print("Отрицательных: $o");
+  print("Нулевых: $nul");
+}
+
+List<int> transformList(List<int> list, Function transformer) {
+  List<int> result = [];
+  list.forEach((n) => result.add(transformer(n)));
+  return result;
+}
+
+int sumDigits(int n) {
+  if (n < 10) return n;
+  return n % 10 + sumDigits(n ~/ 10);
+}
+
+void main() {
+  print(formatName("Иван", "Иванов"));
+  print(formatName("Иван", "Иванов", "Иванович"));
+
+  print(calculate(10, 5, "+"));
+  print(calculate(10, 5, "-"));
+  print(calculate(10, 5, "*"));
+  print(calculate(10, 5, "/"));
+  print(calculate(10, 0, "/"));
+
+  countSigns([1, -2, 0, 5, -3, 0, 7]);
+
+  List<int> s = [1, 2, 3, 4, 5];
+  print(transformList(s, (n) => n * 2));
+  print(transformList(s, (n) => n + 10));
+
+  print(sumDigits(1234));
+  print(sumDigits(999));
+  print(sumDigits(2));
+}

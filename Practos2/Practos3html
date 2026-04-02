@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Лучшие игроки CS2</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header>
+        <h1>Лучшие игроки CS2</h1>
+        <h2>Топ профессионалов Counter-Strike 2</h2>
+    </header>
+
+    <main>
+
+        <div class="card">
+            <img src="https://img-cdn.hltv.org/playerbodyshot/kIHjh9sr2gW8b-xmLfW4Oq.png?ixlib=java-2.1.0&w=400&s=64dfb77304c7c004658a0e7a43d67cad" alt="s1mple">
+            <h3>s1mple</h3>
+            <p>Украинский AWP-игрок BC-Game. 7 раз подряд был №1 в рейтинге HLTV.</p>
+            <a href="https://liquipedia.net/counterstrike/S1mple" target="_blank">Профиль на Liquipedia</a>
+        </div>
+
+        <div class="card card-alt">
+            <img src="https://img-cdn.hltv.org/playerbodyshot/blnoWFtH8GUJZjhr8H0P4u.png?ixlib=java-2.1.0&w=400&s=dc0fe6bd817ef852f59185ccf6b6c868" alt="ZywOo">
+            <h3>ZywOo</h3>
+            <p>Французский снайпер Vitality. Трижды №1 HLTV, мейджор Париж 2023, мейджор в Austin 2025.</p>
+            <a href="https://liquipedia.net/counterstrike/ZywOo" target="_blank">Профиль на Liquipedia</a>
+        </div>
+
+        <div class="card">
+            <img src="https://img-cdn.hltv.org/playerbodyshot/ZrAcgiRTFgDyDj4k04-xAh.png?ixlib=java-2.1.0&w=400&s=afb5419d8de8399ef582f5446702a278" alt="NiKo">
+            <h3>NiKo</h3>
+            <p>Боснийский рифлер Falcons. Лучшая механика игры в истории CS.</p>
+            <a href="https://liquipedia.net/counterstrike/NiKo" target="_blank">Профиль на Liquipedia</a>
+        </div>
+
+        <div class="info">
+            <h3>Характеристики — s1mple</h3>
+            <ul>
+                <li>Команда: BC-Game</li>
+                <li>Роль: AWP / Entry</li>
+                <li>Рейтинг HLTV: 1.34</li>
+                <li>Мейджоров: 1 (Stockholm 2021)</li>
+            </ul>
+        </div>
+
+        <div class="highlight">
+            <p>s1mple — 7 лет подряд был №1 в мировом рейтинге HLTV</p>
+        </div>
+
+    </main>
+
+</body>
+</html>

@@ -1,0 +1,19 @@
+import 'dart:convert';
+import 'package:characters/characters.dart';
+import 'dart:io';
+
+void main() {
+  print('Хотите проанализировать сложные эмодзи? (да/нет)');
+  if (stdin.readLineSync(encoding: utf8)!.trim().toLowerCase() != 'да') return;
+
+  print('Введите строку с эмодзи:');
+  String st = stdin.readLineSync(encoding: utf8)!;
+
+  print(st.codeUnits.length);
+  print(st.runes.length);
+  print(st.characters.length);
+
+  for (var ch in st.characters) {
+    print(ch.runes.map((r) => "U+${r.toRadixString(16).toUpperCase().padLeft(6, '0')}").join(' '));
+  }
+}

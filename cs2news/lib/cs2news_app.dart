@@ -1,0 +1,13 @@
+export 'src/domain/models/author.dart';
+export 'src/domain/models/news.dart';
+export 'src/domain/models/comment.dart';
+export 'src/domain/models/complaint.dart';
+export 'src/domain/validators/text_validator.dart';
+export 'src/domain/validators/number_validator.dart';
+export 'src/data/database.dart';
+export 'src/data/repositories/author_repository.dart';
+export 'src/data/repositories/news_repository.dart';
+export 'src/data/repositories/comment_repository.dart';
+export 'src/data/repositories/complaint_repository.dart';
+export 'src/cli/menu.dart';
+export 'src/cli/input_helper.dart';

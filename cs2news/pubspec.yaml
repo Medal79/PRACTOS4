@@ -1,0 +1,17 @@
+name: cs2news_app
+description: CLI-система управления новостным сайтом CS2.
+version: 1.0.0
+
+environment:
+  sdk: ^3.0.0
+
+dependencies:
+  sqlite3: ^2.9.0
+  path: ^1.9.0
+
+dev_dependencies:
+  test: ^1.25.0
+  lints: ^3.0.0
+
+executables:
+  cs2news_app: main

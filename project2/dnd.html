@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CS2 Киберспорт — Доска задач</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header>
+    <h2>CS2 Киберспорт — Доска задач</h2>
+    <p>Управляйте задачами по подготовке игроков, новостям, анализу матчей и турнирам</p>
+</header>
+
+<div id="add-form">
+    <h3>Добавить задачу</h3>
+    <div class="form-row">
+        <input type="text" id="inp-title" placeholder="Название задачи *" />
+        <select id="inp-category">
+            <option value="Игроки">Игроки</option>
+            <option value="Турниры">Турниры</option>
+            <option value="Матчи">Матчи</option>
+            <option value="Новости">Новости</option>
+            <option value="Аналитика">Аналитика</option>
+            <option value="Другое">Другое</option>
+        </select>
+    </div>
+    <div class="form-row">
+        <select id="inp-priority">
+            <option value="medium">Средний приоритет</option>
+            <option value="high">Высокий приоритет</option>
+            <option value="low">Низкий приоритет</option>
+        </select>
+        <select id="inp-col">
+            <option value="todo">К выполнению</option>
+            <option value="inprogress">В работе</option>
+            <option value="review">На проверке</option>
+            <option value="testing">Тестирование</option>
+            <option value="done">Готово</option>
+        </select>
+    </div>
+    <textarea id="inp-desc" placeholder="Описание (необязательно)"></textarea>
+    <button onclick="addTask()">Добавить задачу</button>
+</div>
+
+<div id="controls">
+    <label>Фильтр:</label>
+    <select id="filter-cat" onchange="renderBoard()">
+        <option value="">Все категории</option>
+        <option value="Игроки">Игроки</option>
+        <option value="Турниры">Турниры</option>
+        <option value="Матчи">Матчи</option>
+        <option value="Новости">Новости</option>
+        <option value="Аналитика">Аналитика</option>
+        <option value="Другое">Другое</option>
+    </select>
+    <label>Поиск:</label>
+    <input type="text" id="filter-search" placeholder="Поиск..." oninput="renderBoard()" />
+    <label>Сортировка:</label>
+    <select id="sort-by" onchange="renderBoard()">
+        <option value="date-desc">Сначала новые</option>
+        <option value="date-asc">Сначала старые</option>
+        <option value="priority">По приоритету</option>
+        <option value="title">По названию</option>
+    </select>
+    <span id="total-counter">Всего задач: 0</span>
+</div>
+
+<div id="board">
+    <div class="column" id="col-todo" ondragover="onDragOver(event)" ondragleave="onDragLeave(event)" ondrop="onDrop(event,'todo')">
+        <div class="col-header"><h3>К выполнению</h3><span class="col-counter" id="cnt-todo">0</span></div>
+        <div class="col-body" id="body-todo"></div>
+    </div>
+    <div class="column" id="col-inprogress" ondragover="onDragOver(event)" ondragleave="onDragLeave(event)" ondrop="onDrop(event,'inprogress')">
+        <div class="col-header"><h3>В работе</h3><span class="col-counter" id="cnt-inprogress">0</span></div>
+        <div class="col-body" id="body-inprogress"></div>
+    </div>
+    <div class="column" id="col-review" ondragover="onDragOver(event)" ondragleave="onDragLeave(event)" ondrop="onDrop(event,'review')">
+        <div class="col-header"><h3>На проверке</h3><span class="col-counter" id="cnt-review">0</span></div>
+        <div class="col-body" id="body-review"></div>
+    </div>
+    <div class="column" id="col-testing" ondragover="onDragOver(event)" ondragleave="onDragLeave(event)" ondrop="onDrop(event,'testing')">
+        <div class="col-header"><h3>Тестирование</h3><span class="col-counter" id="cnt-testing">0</span></div>
+        <div class="col-body" id="body-testing"></div>
+    </div>
+    <div class="column" id="col-done" ondragover="onDragOver(event)" ondragleave="onDragLeave(event)" ondrop="onDrop(event,'done')">
+        <div class="col-header"><h3>Готово</h3><span class="col-counter" id="cnt-done">0</span></div>
+        <div class="col-body" id="body-done"></div>
+    </div>
+</div>
+
+<div id="modal-overlay">
+    <div id="modal">
+        <h3>Редактировать задачу</h3>
+        <input type="text" id="m-title" placeholder="Название *" />
+        <select id="m-category">
+            <option value="Игроки">Игроки</option>
+            <option value="Турниры">Турниры</option>
+            <option value="Матчи">Матчи</option>
+            <option value="Новости">Новости</option>
+            <option value="Аналитика">Аналитика</option>
+            <option value="Другое">Другое</option>
+        </select>
+        <select id="m-priority">
+            <option value="medium">Средний</option>
+            <option value="high">Высокий</option>
+            <option value="low">Низкий</option>
+        </select>
+        <select id="m-col">
+            <option value="todo">К выполнению</option>
+            <option value="inprogress">В работе</option>
+            <option value="review">На проверке</option>
+            <option value="testing">Тестирование</option>
+            <option value="done">Готово</option>
+        </select>
+        <textarea id="m-desc" placeholder="Описание"></textarea>
+        <div class="modal-btns">
+            <button id="modal-save" onclick="saveEdit()">Сохранить</button>
+            <button id="modal-cancel" onclick="closeModal()">Отмена</button>
+        </div>
+    </div>
+</div>
+
+<div id="notification" class="highlight"></div>
+<script src="script.js"></script>
+</body>
+</html>

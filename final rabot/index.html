@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+  <title>АнимеПузырь — Симулятор информационного пузыря</title>
+  <link rel="stylesheet" href="style.css"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;700&family=Bebas+Neue&family=Share+Tech+Mono&display=swap" rel="stylesheet"/>
+</head>
+<body>
+  <div id="screen-intro" class="screen active">
+    <div class="sakura-bg" id="sakuraBg"></div>
+    <div class="intro-content">
+      <div class="intro-header">
+        <div class="logo-eyebrow">СИМУЛЯТОР ИНФОРМАЦИОННОГО ПУЗЫРЯ</div>
+        <h1 class="logo-title">アニメ<br><span class="logo-title-accent">ПУЗЫРЬ</span></h1>
+        <p class="logo-sub">Алгоритм уже знает, что ты будешь смотреть дальше</p>
+      </div>
+      <p class="intro-hint">// выбери свои любимые жанры, чтобы начать</p>
+      <div class="genre-grid" id="genreGrid"></div>
+      <button class="btn-start" id="btnStart" disabled>
+        <span class="btn-start-jp">入る</span>
+        ВОЙТИ В ПУЗЫРЬ
+      </button>
+    </div>
+  </div>
+  <div id="screen-feed" class="screen">
+    <div class="scanlines"></div>
+    <div class="glitch-overlay" id="glitchOverlay"></div>
+    <header class="feed-header">
+      <div class="feed-logo">
+        <span class="feed-logo-jp">アニメ</span>
+        <span class="feed-logo-bubble">ПУЗЫРЬ</span>
+      </div>
+      <div class="bubble-meter-wrap">
+        <span class="bubble-label">ПУЗЫРЬ</span>
+        <div class="bubble-bar-track">
+          <div class="bubble-bar-fill" id="bubbleBar"></div>
+          <div class="bubble-bar-glow" id="bubbleBarGlow"></div>
+        </div>
+        <span class="bubble-value" id="bubbleValue">0%</span>
+      </div>
+      <div class="header-right">
+        <button class="btn-algo"    id="btnAlgo">⚙ Алгоритм</button>
+        <button class="btn-compare" id="btnCompare">⇄ Сравнить</button>
+        <button class="btn-burst"   id="btnBurst">✦ Сломать пузырь</button>
+      </div>
+    </header>
+    <div class="feed-layout">
+      <aside class="sidebar">
+        <div class="sidebar-section">
+          <div class="sidebar-label">МОИ ЖАНРЫ</div>
+          <div id="sidebarTags" class="sidebar-tags"></div>
+        </div>
+        <div class="sidebar-section">
+          <div class="sidebar-label">ДОМИНИРУЮЩИЕ ТЕГИ</div>
+          <div id="topTags" class="top-tags"></div>
+        </div>
+        <div class="sidebar-section" id="statsBlock">
+          <div class="sidebar-label">СТАТИСТИКА</div>
+          <div id="sidebarStats" class="sidebar-stats"></div>
+        </div>
+      </aside>
+      <main class="feed-main">
+        <div class="feed-cards" id="feedCards"></div>
+        <button class="btn-more" id="btnMore">— загрузить ещё —</button>
+      </main>
+    </div>
+    <div class="algo-panel" id="algoPanel" style="display:none"></div>
+    <div class="compare-panel" id="comparePanel" style="display:none">
+      <button class="btn-close-compare" id="btnCloseCompare">✕</button>
+      <div class="compare-title">Два пузыря рядом</div>
+      <div class="compare-cols">
+        <div class="compare-col">
+          <div class="compare-heading">Пользователь А<br><small id="userALabel"></small></div>
+          <div class="compare-feed" id="compareFeedA"></div>
+        </div>
+        <div class="compare-divider"></div>
+        <div class="compare-col">
+          <div class="compare-heading">Пользователь Б<br><small id="userBLabel"></small></div>
+          <div class="compare-feed" id="compareFeedB"></div>
+        </div>
+      </div>
+    </div>
+    <div class="max-bubble-overlay" id="maxBubbleOverlay" style="display:none"></div>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>
